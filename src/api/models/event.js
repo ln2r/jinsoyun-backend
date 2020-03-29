@@ -10,10 +10,10 @@ const dataSchema = new mongoose.Schema({
   last_event_redeem: String,
   rewards:{
     daily: [
-        {name: String, tier: Number, _id: false}
+      {name: String, tier: Number, _id: false}
     ],
     weekly:[
-        {name: String, tier: Number, _id: false}
+      {name: String, tier: Number, _id: false}
     ]
   }, 
   todo: [String],
@@ -21,8 +21,8 @@ const dataSchema = new mongoose.Schema({
     {name: String, location: [String], day: [String], _id: false}
   ]
 }, {
-  collection: "event",
+  collection: 'event',
   versionKey: false
 });
 
-module.exports = mongoose.model("event", dataSchema);
+module.exports = mongoose.model('event', dataSchema);

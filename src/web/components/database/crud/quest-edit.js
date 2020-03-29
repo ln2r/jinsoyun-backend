@@ -10,24 +10,24 @@ const apiAddress = config.api.address;
 export default class PageEditorQuest extends Component {  
   constructor(props){
     super(props);
-      this.onChangeQuestName      = this.onChangeQuestName.bind(this);
-      this.onChangeQuestLocation  = this.onChangeQuestLocation.bind(this);
-      this.onChangeQuestType      = this.onChangeQuestType.bind(this);
-      this.onSubmit               = this.onSubmit.bind(this);
+    this.onChangeQuestName      = this.onChangeQuestName.bind(this);
+    this.onChangeQuestLocation  = this.onChangeQuestLocation.bind(this);
+    this.onChangeQuestType      = this.onChangeQuestType.bind(this);
+    this.onSubmit               = this.onSubmit.bind(this);
 
-      this.state = {
-        id: 0,
-        name: '',
-        location: [''],
-        type:'',        
-        dungeonList: [],
-        dungeonInput: ['dg-1']
-      }
+    this.state = {
+      id: 0,
+      name: '',
+      location: [''],
+      type:'',        
+      dungeonList: [],
+      dungeonInput: ['dg-1']
+    };
   }
 
   componentDidMount() {
-    let questId = this.props.location.pathname.replace(/(\/)(.*)(\/)/gi, "");
-    axios.get(apiAddress+"quests/"+questId)
+    let questId = this.props.location.pathname.replace(/(\/)(.*)(\/)/gi, '');
+    axios.get(apiAddress+'quests/'+questId)
       .then(response => {
         this.setState({
           id: response.data[0].id,
@@ -39,7 +39,7 @@ export default class PageEditorQuest extends Component {
       })
       .catch(function (error) {
         console.log(error);
-      })
+      });
       
     axios.get(apiAddress+'dungeons')
       .then((response) => {
@@ -57,22 +57,22 @@ export default class PageEditorQuest extends Component {
   }
   onChangeQuestLocation(e, index) {
     let nextLocationData = this.state.location.slice();
-        nextLocationData[index] = e.target.value;
+    nextLocationData[index] = e.target.value;
     this.setState({
       location: nextLocationData
-    })  
+    });  
   }
 
   onSelectQuestLocation(name, index){
     let nextLocationData = this.state.location.slice();
-        nextLocationData[index] = name;
+    nextLocationData[index] = name;
     this.setState({ location: nextLocationData });
   }
 
   onChangeQuestType(e) {
     this.setState({
       type: e.target.value
-    })
+    });
   }
 
   onSubmit(e) {
@@ -84,7 +84,7 @@ export default class PageEditorQuest extends Component {
       location: this.state.location,
     };
 
-    axios.patch(apiAddress+"quests/"+this.state.id, obj)
+    axios.patch(apiAddress+'quests/'+this.state.id, obj)
       .then(res => console.log(res.data));
   
     this.props.history.push('/db');
@@ -129,7 +129,7 @@ export default class PageEditorQuest extends Component {
               <FormControl
                 placeholder="Location"
                 aria-label="quest location"
-                id={"quest-location"+index}
+                id={'quest-location'+index}
                 value={this.state.location[index]}
                 onChange = {this.onChangeQuestLocation}
               />
@@ -137,7 +137,7 @@ export default class PageEditorQuest extends Component {
               <select onChange={e => this.onSelectQuestLocation(e.target.value, index)}>
                 <option>Select Location</option>
                 {this.state.dungeonList.map((dungeonData, index) =>
-                  <option value={dungeonData.name} key={"dungeons-list-"+index+"-"+input}>{dungeonData.name}</option>
+                  <option value={dungeonData.name} key={'dungeons-list-'+index+'-'+input}>{dungeonData.name}</option>
                 )}
               </select>
               <InputGroup.Append className="ml-2">
@@ -146,13 +146,13 @@ export default class PageEditorQuest extends Component {
               </InputGroup.Append>            
             </InputGroup> 
           </span>        
-         )}
+        )}
               
 
         <hr />
         <Button className="float-right" variant="primary" type="submit" onClick={this.onSubmit}>Update</Button> 
       </div>
-    )
+    );
   }
 
   appendInput() {
@@ -163,7 +163,7 @@ export default class PageEditorQuest extends Component {
   removeInput(idx){
     if(this.state.dungeonInput.length > 1){
       let someArray = this.state.dungeonInput;
-        someArray.splice(idx, 1);
+      someArray.splice(idx, 1);
 
       this.setState({ dungeonInput: someArray });
     }    

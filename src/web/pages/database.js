@@ -17,29 +17,29 @@ import CrudDungeonDelete from '../components/database/crud/dungeon-delete';
 
 export default class PageDatabase extends Component {  
 
-render() {
-  return (
-    <Router>
-    <div className="App-database-wrapper m-5">
-      <div className="App-database-header p-5">
-        <h3>Database Configuration</h3>
-        <em>Here you can modify or configure Jinsoyun's data.</em>
-      </div>
-      <hr />      
-      <Switch>
-        <Route exact path="/db" component={PageDatabaseTable} />
-        <Route path="/db/challenges/edit" component={CrudChallengeEdit} />
-        <Route path="/db/event/edit" component={CrudEventEdit} />
+  render() {
+    return (
+      <Router>
+        <div className="App-database-wrapper m-5">
+          <div className="App-database-header p-5">
+            <h3>Database Configuration</h3>
+            <em>Here you can modify or configure Jinsoyun&apos;s data.</em>
+          </div>
+          <hr />      
+          <Switch>
+            <Route exact path="/db" component={PageDatabaseTable} />
+            <Route path="/db/challenges/edit" component={CrudChallengeEdit} />
+            <Route path="/db/event/edit" component={CrudEventEdit} />
 
-        <Route path="/db/quest/new" component={CrudQuestsNew} />
-        <Route path="/db/quest/edit" component={CrudQuestEdit} />
-        <Route path="/db/quest/remove" component={CrudQuestDelete} />
+            <Route path="/db/quest/new" component={CrudQuestsNew} />
+            <Route path="/db/quest/edit" component={CrudQuestEdit} />
+            <Route path="/db/quest/remove" component={CrudQuestDelete} />
 
-        <Route path="/db/dungeon/new" component={CrudDungeonNew} />
-        <Route path="/db/dungeon/edit" component={CrudDungeonEdit} />
-        <Route path="/db/dungeon/remove" component={CrudDungeonDelete} />        
-      </Switch>
-    </div>
-    </Router>            
-  )}
+            <Route path="/db/dungeon/new" component={CrudDungeonNew} />
+            <Route path="/db/dungeon/edit" component={CrudDungeonEdit} />
+            <Route path="/db/dungeon/remove" component={CrudDungeonDelete} />        
+          </Switch>
+        </div>
+      </Router>            
+    );}
 }

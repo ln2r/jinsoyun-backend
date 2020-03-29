@@ -8,7 +8,7 @@ const apiAddress = config.api.address;
 
 export default class CrudQuestDelete extends Component {  
   componentDidMount() {
-    let dungeonId = this.props.location.pathname.replace(/(\/)(.*)(\/)/gi, "");
+    let dungeonId = this.props.location.pathname.replace(/(\/)(.*)(\/)/gi, '');
       
     axios.delete(apiAddress+'dungeons/'+dungeonId)
       .then(() => {
@@ -21,5 +21,5 @@ export default class CrudQuestDelete extends Component {
   render(){
     return (
       <p>Deleted a quest data.</p>
-   )}
+    );}
 }

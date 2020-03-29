@@ -10,25 +10,25 @@ const apiAddress = config.api.address;
 export default class CrudChallengesEdit extends Component {  
   constructor(props){
     super(props);
-      this.onChangeName     = this.onChangeName.bind(this);
-      this.onChangeItemName = this.onChangeItemName.bind(this);
-      this.onChangeTier     = this.onChangeTier.bind(this);
-      this.onChangeQuest    = this.onChangeQuest.bind(this);
-      this.onChangeLocation = this.onChangeLocation.bind(this);
-      this.onSubmit         = this.onSubmit.bind(this);
+    this.onChangeName     = this.onChangeName.bind(this);
+    this.onChangeItemName = this.onChangeItemName.bind(this);
+    this.onChangeTier     = this.onChangeTier.bind(this);
+    this.onChangeQuest    = this.onChangeQuest.bind(this);
+    this.onChangeLocation = this.onChangeLocation.bind(this);
+    this.onSubmit         = this.onSubmit.bind(this);
 
-      this.state = {
-        id: 0,
-        name: '',
-        rewards: [''],
-        quests: [''],
-        questsList: [],
-      }
+    this.state = {
+      id: 0,
+      name: '',
+      rewards: [''],
+      quests: [''],
+      questsList: [],
+    };
   }
 
   componentDidMount() {    
-    let challengesId = this.props.location.pathname.replace(/(\/)(.*)(\/)/gi, "");
-    axios.get(apiAddress+"challenges/"+challengesId)
+    let challengesId = this.props.location.pathname.replace(/(\/)(.*)(\/)/gi, '');
+    axios.get(apiAddress+'challenges/'+challengesId)
       .then(response => {
         this.setState({
           id: response.data[0].id,
@@ -39,7 +39,7 @@ export default class CrudChallengesEdit extends Component {
       })
       .catch(function (error) {
         console.log(error);
-      })
+      });
  
     axios.get(apiAddress+'quests')
       .then((response) => {
@@ -58,53 +58,53 @@ export default class CrudChallengesEdit extends Component {
 
   onChangeItemName(data, index){
     let nextData = this.state.rewards.slice();
-        nextData[index].name = data;
+    nextData[index].name = data;
     this.setState({
       rewards: nextData
-    })
+    });
   }
 
   onChangeTier(data, index){
     let nextData = this.state.rewards.slice();
-        nextData[index].tier = data;
+    nextData[index].tier = data;
     this.setState({
       rewards: nextData
-    })
+    });
   }
 
   onChangeQuest(e, index) {
     let nextData = this.state.quests.slice();
-        nextData[index].quest = e.target.value;
+    nextData[index].quest = e.target.value;
     this.setState({
       quests: nextData
-    })  
+    });  
   }
 
   onChangeLocation(e, index) {
     let nextData = this.state.quests.slice();
-        nextData[index].location = e.target.value;
+    nextData[index].location = e.target.value;
     this.setState({
       quests: nextData
-    })  
+    });  
   }
 
   onSelectQuest(data, index){
     let nextData = this.state.quests.slice();
     let selectedData = {name: this.state.questsList[data].name, location: this.state.questsList[data].location};
-        nextData[index] = selectedData;
+    nextData[index] = selectedData;
     this.setState({ quests: nextData });
   }
 
   onSubmit(e) {
     e.preventDefault();
     const obj = {
-        name: this.state.name,
-        rewards: this.state.rewards,
-        quests: this.state.quests,
-        id: this.state.id,
+      name: this.state.name,
+      rewards: this.state.rewards,
+      quests: this.state.quests,
+      id: this.state.id,
     };
 
-    axios.patch(apiAddress+"challenges/"+this.state.id, obj)
+    axios.patch(apiAddress+'challenges/'+this.state.id, obj)
       .then(res => console.log(res.data));
   
     this.props.history.push('/db');
@@ -138,7 +138,7 @@ export default class CrudChallengesEdit extends Component {
                 value={this.state.rewards[index].name}
                 onChange = {e => this.onChangeItemName(e.target.value, index)}
                 className = "mb-3"
-                key = {"challenges-edit-rewards-item-"+index}
+                key = {'challenges-edit-rewards-item-'+index}
               />
             )}
           </Col>
@@ -151,16 +151,16 @@ export default class CrudChallengesEdit extends Component {
                 value={this.state.rewards[index].tier}
                 onChange = {e => this.onChangeTier(e.target.value, index)}
                 className = "mb-3"
-                key = {"challenges-edit-rewards-tier-"+index}
+                key = {'challenges-edit-rewards-tier-'+index}
               />
             )}
           </Col>
           <Col>
             <Form.Label>Actions</Form.Label>
             {this.state.rewards.map((input, index) =>
-            <InputGroup.Append className="mb-3" key = {"challenges-edit-rewards-action-"+index}>
-                <Button variant="success" key = {"challenges-edit-rewards-action-add-"+index} onClick={ () => this.addReward() }>Add</Button>
-                <Button variant="danger" key = {"challenges-edit-rewards-action-remove-"+index} onClick={ () => this.removeReward(index) }>Remove</Button>
+              <InputGroup.Append className="mb-3" key = {'challenges-edit-rewards-action-'+index}>
+                <Button variant="success" key = {'challenges-edit-rewards-action-add-'+index} onClick={ () => this.addReward() }>Add</Button>
+                <Button variant="danger" key = {'challenges-edit-rewards-action-remove-'+index} onClick={ () => this.removeReward(index) }>Remove</Button>
               </InputGroup.Append>
             )}
           </Col>
@@ -177,7 +177,7 @@ export default class CrudChallengesEdit extends Component {
                 value={this.state.quests[index].name}
                 onChange = {this.onChangeQuest}
                 className = "mb-3"
-                key = {"challenges-edit-quest-name-"+index}
+                key = {'challenges-edit-quest-name-'+index}
               />
             )}
           </Col>
@@ -190,17 +190,17 @@ export default class CrudChallengesEdit extends Component {
                 value={this.state.quests[index].location}
                 onChange = {this.onChangeQuest}
                 className = "mb-3"
-                key = {"challenges-edit-quest-location-"+index}
+                key = {'challenges-edit-quest-location-'+index}
               />
             )}
           </Col>
           <Col>
             <Form.Label>Quest List</Form.Label>
             {this.state.quests.map((input, index) =>
-              <FormControl as="select" onChange={e => this.onSelectQuest(e.target.value, index)} className = "mb-3" key = {"challenges-edit-quest-list-"+index}>
+              <FormControl as="select" onChange={e => this.onSelectQuest(e.target.value, index)} className = "mb-3" key = {'challenges-edit-quest-list-'+index}>
                 <option>Select Quest</option>
                 {this.state.questsList.map((questData, index) =>
-                  <option value={index} key={"challenges-quests-list-"+index+"-"+input}>{questData.name}</option>
+                  <option value={index} key={'challenges-quests-list-'+index+'-'+input}>{questData.name}</option>
                 )}
               </FormControl>
             )}
@@ -208,9 +208,9 @@ export default class CrudChallengesEdit extends Component {
           <Col>
             <Form.Label>Actions</Form.Label>
             {this.state.quests.map((input, index) =>
-            <InputGroup.Append className="mb-3" key = {"challenges-edit-quest-action-"+index}>
-                <Button variant="success" key = {"challenges-edit-quest-action-add-"+index} onClick={ () => this.appendInput() }>Add</Button>
-                <Button variant="danger" key = {"challenges-edit-quest-action-remove-"+index} onClick={ () => this.removeInput(index) }>Remove</Button>
+              <InputGroup.Append className="mb-3" key = {'challenges-edit-quest-action-'+index}>
+                <Button variant="success" key = {'challenges-edit-quest-action-add-'+index} onClick={ () => this.appendInput() }>Add</Button>
+                <Button variant="danger" key = {'challenges-edit-quest-action-remove-'+index} onClick={ () => this.removeInput(index) }>Remove</Button>
               </InputGroup.Append>
             )}
           </Col>
@@ -219,21 +219,21 @@ export default class CrudChallengesEdit extends Component {
         <hr />
         <Button className="float-right" variant="primary" type="submit" onClick={this.onSubmit}>Update</Button> 
       </div>
-    )
+    );
   }
 
   addReward() {
     let newEmptyData = {
       name: '',
       location: '',
-    }
+    };
     this.setState(prevState => ({ rewards: prevState.rewards.concat([newEmptyData]) }));
   }
 
   removeReward(idx){
     if(this.state.rewards.length > 1){
       let newData = this.state.rewards;
-          newData.splice(idx, 1);
+      newData.splice(idx, 1);
 
       this.setState({ rewards: newData });
     }    
@@ -243,14 +243,14 @@ export default class CrudChallengesEdit extends Component {
     let newEmptyData = {
       name: '',
       location: '',
-    }
+    };
     this.setState(prevState => ({ quests: prevState.quests.concat([newEmptyData]) }));
   }
 
   removeQuest(idx){
     if(this.state.quests.length > 1){
       let newData = this.state.quests;
-          newData.splice(idx, 1);
+      newData.splice(idx, 1);
 
       this.setState({ quests: newData });
     }    

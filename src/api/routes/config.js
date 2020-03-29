@@ -45,14 +45,14 @@ module.exports = function(app) {
         .send({
           'code': 400,
           'status': err
-        })
+        });
     } 
-});
+  });
 
   app.patch('/config', async(req, res) => {        
     dataModel.findOne({guild: 0}, function(err, data){
       if(!data){
-        res.status(404)
+        res.status(404);
       }else{
         data.settings.status            = req.body.status;
         data.settings.not_found         = req.body.not_found;
@@ -87,16 +87,16 @@ module.exports = function(app) {
               .send({
                 'code': 200,
                 'status': 'OK'
-              })
+              });
           })
           .catch(err => {
             res.header('Content-Type','application/json')
-                .status(400)
-                .send({
-                  'code': 400,
-                  'status': err
-                })
-          })
+              .status(400)
+              .send({
+                'code': 400,
+                'status': err
+              });
+          });
       } 
       
       if(err){
@@ -105,8 +105,8 @@ module.exports = function(app) {
           .send({
             'code': 500,
             'status': err
-          })
+          });
       }
-    })
-  })
+    });
+  });
 };

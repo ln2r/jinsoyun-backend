@@ -1,4 +1,4 @@
-const MongoClient = require("mongodb").MongoClient;
+const MongoClient = require('mongodb').MongoClient;
 
 const url = process.env.SOYUN_API_DB_CONNECT_URL;
 const dbName = process.env.SOYUN_API_DB_NAME;
@@ -17,24 +17,24 @@ const dbName = process.env.SOYUN_API_DB_NAME;
  *  core.mongoGetData("classes");
  */
 module.exports = function (collname, filter, sorting, limit) {
-    filter = (filter === null || filter === undefined)? {} : filter;
-    sorting = (sorting === null || sorting === undefined)? {} : sorting;
-    limit = (limit === null || limit === undefined)? 0 : limit;  
+  filter = (filter === null || filter === undefined)? {} : filter;
+  sorting = (sorting === null || sorting === undefined)? {} : sorting;
+  limit = (limit === null || limit === undefined)? 0 : limit;  
     
-    try{
-      return MongoClient.connect(url, {useNewUrlParser: true, useUnifiedTopology: true})
-            .then(async function(db) {
-                  const dbo = db.db(dbName);
-                  const result = await dbo.collection(collname).find(filter).sort(sorting).limit(limit).toArray();
+  try{
+    return MongoClient.connect(url, {useNewUrlParser: true, useUnifiedTopology: true})
+      .then(async function(db) {
+        const dbo = db.db(dbName);
+        const result = await dbo.collection(collname).find(filter).sort(sorting).limit(limit).toArray();
                   
-                  db.close();
+        db.close();
 
-                  return result;
-            })
-            .then(function(items) {
-                  return items;
-            });  
-    }catch(err){
-          console.log(err)
-    };         
-}
+        return result;
+      })
+      .then(function(items) {
+        return items;
+      });  
+  }catch(err){
+    console.log(err);
+  }         
+};

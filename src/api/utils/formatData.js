@@ -6,11 +6,11 @@
  */
 function setDataFormat(data){
 
-    let formatted = JSON.parse(JSON.stringify(data).split("'_id':").join("'id':"));
+  let formatted = JSON.parse(JSON.stringify(data).split('\'_id\':').join('\'id\':'));
 
-    return formatted;
+  return formatted;
 }
 
 module.exports = {
-    setDataFormat
-}
+  setDataFormat
+};

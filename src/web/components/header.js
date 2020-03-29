@@ -10,18 +10,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
  */
 
 export default class ElementMenu extends Component {
-    render() {
-        return (
-            <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
-                <Navbar.Brand href="/">Jinsoyun</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="mr-auto">
-                        <Nav.Link href="/">Home</Nav.Link>
-                        <Nav.Link href="/db/">Database</Nav.Link>                        
-                        <Nav.Link href="/stats/">Statistic</Nav.Link>
-                    </Nav>
-                </Navbar.Collapse>
-            </Navbar>
-        )}
-    }
+  render() {
+    return (
+      <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
+        <Navbar.Brand href="/">Jinsoyun</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/db/">Database</Nav.Link>                        
+            <Nav.Link href="/stats/">Statistic</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    );}
+}

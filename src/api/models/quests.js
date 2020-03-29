@@ -6,8 +6,8 @@ const dataSchema = new mongoose.Schema({
   location: [String],
   type: {type: Number, _id: false}
 }, {
-  collection: "quests",
+  collection: 'quests',
   versionKey: false
 });
 
-module.exports = mongoose.model("quests", dataSchema);
+module.exports = mongoose.model('quests', dataSchema);

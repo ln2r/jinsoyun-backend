@@ -4,8 +4,8 @@ const stats = require('./stats.js');
 const fetchQuests = require('./fetchQuests');
 
 module.exports = {
-    formatData,
-    fetchDB,
-    stats,
-    fetchQuests
-}
+  formatData,
+  fetchDB,
+  stats,
+  fetchQuests
+};
