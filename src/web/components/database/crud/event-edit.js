@@ -358,7 +358,7 @@ export default class CrudEventEdit extends Component {
           <Row>
             <Col>
               <Form.Label>Item Name</Form.Label>
-              {this.state.weeklyRewards.map((input, index) =>
+              {this.state.weeklyRewards.map((data, index) =>
                 <FormControl
                   aria-label="weekly rewards item"
                   id="weekly-rewards-item"
@@ -375,7 +375,7 @@ export default class CrudEventEdit extends Component {
                 <FormControl
                   aria-label="weekly rewards tier"
                   id="weekly-rewards-tier"
-                  value={data}
+                  value={this.state.weeklyRewards[index].tier}
                   onChange = {e => this.onChangeTierWeekly(e.target.value, index)}
                   className = "mb-3"
                   key = {'event-edit-weekly-rewards-tier-'+index}
@@ -436,7 +436,7 @@ export default class CrudEventEdit extends Component {
                   <FormControl as="select" onChange={e => this.onSelectQuest(e.target.value, index)} className = "mb-3" key = {'challenges-edit-quest-list-'+index}>
                     <option>Select Quest</option>
                     {this.state.questsList.map((questData, index) =>
-                      <option value={index} key={'event-quests-list-'+index+'-'+input}>{questData.name}</option>
+                      <option value={index} key={'event-quests-list-'+index+'-'+input}>{questData.location.join(', ')} ({questData.name})</option>
                     )}
                   </FormControl>
                 </Col>
@@ -480,7 +480,7 @@ export default class CrudEventEdit extends Component {
   addRewardDaily() {
     let newEmptyData = {
       name: '',
-      tier: ''
+      tier: 0
     };
     this.setState(prevState => ({ dailyRewards: prevState.dailyRewards.concat([newEmptyData]) }));
   }
@@ -488,7 +488,7 @@ export default class CrudEventEdit extends Component {
   addRewardWeekly() {
     let newEmptyData = {
       name: '',
-      tier: ''
+      tier: 0
     };
     this.setState(prevState => ({ weeklyRewards: prevState.weeklyRewards.concat([newEmptyData]) }));
   }
