@@ -71,7 +71,7 @@ export default class CrudDungeonEdit extends Component{
 
   onChangeType(e) {
     this.setState({
-      type: parseInt(e.target.value)
+      type: e.target.value
     });
   }
 
@@ -83,19 +83,19 @@ export default class CrudDungeonEdit extends Component{
 
   onChangeAPEasy(e){
     this.setState({
-      ap_easy: parseInt(e.target.value)
+      ap_easy: e.target.value
     });
   }
 
   onChangeAPNormal(e){
     this.setState({
-      ap_normal: parseInt(e.target.value)
+      ap_normal: e.target.value
     });
   }
 
   onChangeAPHard(e){
     this.setState({
-      ap_hard: parseInt(e.target.value)
+      ap_hard: e.target.value
     });
   }
 
@@ -139,15 +139,15 @@ export default class CrudDungeonEdit extends Component{
     e.preventDefault();
 
     let apData = {
-      easy: this.state.ap_easy,
-      normal: this.state.ap_normal,
-      hard: this.state.ap_hard,
+      easy: parseInt(this.state.ap_easy),
+      normal: parseInt(this.state.ap_normal),
+      hard: parseInt(this.state.ap_hard),
     };
 
     const obj = {
       id: this.state.id,
       name: this.state.name,
-      type: this.state.type,
+      type: parseInt(this.state.type),
       requirements: this.state.requirements,
       guides: this.state.guides,
       attack_power: apData,
