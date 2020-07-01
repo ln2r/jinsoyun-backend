@@ -200,7 +200,7 @@ export default class CrudChallengesEdit extends Component {
               <FormControl as="select" onChange={e => this.onSelectQuest(e.target.value, index)} className = "mb-3" key = {'challenges-edit-quest-list-'+index}>
                 <option>Select Quest</option>
                 {this.state.questsList.map((questData, index) =>
-                  <option value={index} key={'challenges-quests-list-'+index+'-'+input}>{questData.name}</option>
+                  <option value={index} key={'challenges-quests-list-'+index+'-'+input}>{questData.location.join(', ')} ({questData.name})</option>
                 )}
               </FormControl>
             )}
@@ -209,8 +209,8 @@ export default class CrudChallengesEdit extends Component {
             <Form.Label>Actions</Form.Label>
             {this.state.quests.map((input, index) =>
               <InputGroup.Append className="mb-3" key = {'challenges-edit-quest-action-'+index}>
-                <Button variant="success" key = {'challenges-edit-quest-action-add-'+index} onClick={ () => this.appendInput() }>Add</Button>
-                <Button variant="danger" key = {'challenges-edit-quest-action-remove-'+index} onClick={ () => this.removeInput(index) }>Remove</Button>
+                <Button variant="success" key = {'challenges-edit-quest-action-add-'+index} onClick={ () => this.addQuest() }>Add</Button>
+                <Button variant="danger" key = {'challenges-edit-quest-action-remove-'+index} onClick={ () => this.removeQuest(index) }>Remove</Button>
               </InputGroup.Append>
             )}
           </Col>
